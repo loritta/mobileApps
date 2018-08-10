@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TestsClass2</string>
+    <string name="studentId">Get Random Student ID</string>
+    <string name="studentInfo">Get Random Student Info</string>
     <string name="some_text">Here is a text with a <b>bold</b>, <i>italic</i> and <u>underline</u> fomat.</string>
     <string-array name="string_array_example">
         <item>The first one</item>

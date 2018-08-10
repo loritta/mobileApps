@@ -1,0 +1,246 @@
+
+package com.example.ipd12.testsclass2;
+
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+import java.util.ArrayList;
+
+import java.util.List;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+TextView myTextView;
+static int counter=0;
+    //String[] studentID = new String[20];
+
+//create function to populate students list
+List<Student> students=getStudents();
+    int rnd=new Random().nextInt(students.size());
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        //second day
+
+        Toast.makeText(MainActivity.this, "My toast", Toast.LENGTH_LONG).show();
+        //typecast is not absolutely necessary
+        myTextView=(TextView)findViewById(R.id.TestsClass2TextView);
+
+
+
+        //first day
+
+//        myTextView=(TextView)findViewById(R.id.TestsClass2TextView);
+//        myTextView.append("\n My appended Text");
+
+//        myTextView.setText(Integer.toString(counter));
+//        for (int i=0;i<20;i++){
+//            studentID[i]="stud"+i;
+//        }
+//        int rnd;
+//
+//        rnd = new Random().nextInt(studentID.length);
+//        myTextView.append("\nThe random student:\n" + studentID[rnd]);
+
+//        myTextView.append("\nStudent List:");
+//        for (int i=0;i<studentID.length;i++){
+//            String student = studentID[i];
+//            myTextView.append("\n"+ student);
+//        }
+
+//        myTextView.append("\n"+getText(R.string.some_text)+"\n");
+//        Resources res=getResources();
+//        String[]array_trial = res.getStringArray(R.array.string_array_example);
+
+//        for (int i=0; i<array_trial.length;i++){
+//            myTextView.append(array_trial[i].toString()+"\n");
+//        }
+
+
+    }
+
+    public void incrementCounter(View view) {
+//        counter++;
+//        myTextView.setText(Integer.toString(counter));
+//        myTextView.append("\nThe random student's id:\n" + students.get(rnd).getId());
+//        myTextView.append("\nThe random student's name:\n" + students.get(rnd).getName());
+//
+//
+//        //2nd day
+//        Log.i("ressource_value", Integer.toString(R.string.app_name));
+    }
+
+
+//3rd day practice ==> friday
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    //used without a on click function
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        int clickedItemId = item.getItemId();
+//        myTextView=(TextView)findViewById(R.id.TestsClass2TextView);
+//        if(clickedItemId==R.id.StudentID){
+//            myTextView.append("\nThe random student's id:\n" + students.get(rnd).getId());
+//        }
+//        else if(clickedItemId==R.id.StudentAdditionalInfo){
+//            myTextView.append("\nThe random student's name:\n" + students.get(rnd).getName());
+//            myTextView.append("\nThe random student's address:\n" + students.get(rnd).getAddress());
+//            myTextView.append("\nThe random student's id:\n" + students.get(rnd).getId());
+//        }
+//        else{
+//            return super.onOptionsItemSelected(item);
+//        }
+        return true;
+    }
+
+    public List<Student> getStudents(){
+        List<Student> students= new ArrayList<Student>();
+        for (int i=0; i<20; i++){
+            Student s = new Student("id"+i, "name"+i, "address"+i);
+            students.add(s);
+        }
+        return students;
+    }
+
+    ///used with an on click action
+    public void getStudentID(MenuItem item) {
+        myTextView=(TextView)findViewById(R.id.TestsClass2TextView);
+        myTextView.setText("");
+        myTextView.append("\nThe random student's id:\n" + students.get(rnd).getId());
+    }
+
+    ///used with an on click action
+    public void getStudentInfo(MenuItem item){
+        myTextView=(TextView)findViewById(R.id.TestsClass2TextView);
+        myTextView.setText("");
+        myTextView.append("\nThe random student's id:\n" + students.get(rnd).getId());
+        myTextView.append("\nThe random student's name:\n" + students.get(rnd).getName());
+        myTextView.append("\nThe random student's address:\n" + students.get(rnd).getAddress());
+
+
+    }
+
+}
+/////////////////////////////////////////////////////////////
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ipd12.testsclass2.MainActivity">
+
+    <TextView
+        android:id="@+id/TestsClass2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+         />
+    <!--<TextView-->
+        <!--style="@style/biggerText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="The style of the text from the styles and activiy_main !"-->
+        <!--/>-->
+
+<!--<android.support.v7.widget.AppCompatButton-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:onClick="incrementCounter"-->
+    <!--android:text="Click Me"/>-->
+</LinearLayout>
+
+
+
+///////////////////////////////////////////////////////////////////
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/StudentID"
+    android:title="@string/studentId"
+    android:orderInCategory="1"
+    android:onClick="getStudentID">
+</item>
+    <item android:id="@+id/StudentAdditionalInfo"
+        android:title="@string/studentInfo"
+        android:orderInCategory="2"
+        android:onClick="getStudentInfo">
+    </item>
+</menu>
+
+/////////////////////////////////////////////////////
+<resources>
+    <string name="app_name">TestsClass2</string>
+    <string name="studentId">Get Random Student ID</string>
+    <string name="studentInfo">Get Random Student Info</string>
+    <string name="some_text">Here is a text with a <b>bold</b>, <i>italic</i> and <u>underline</u> fomat.</string>
+    <string-array name="string_array_example">
+        <item>The first one</item>
+        <item>The second one</item>
+        <item>The third one</item>
+        <item>The fourth one</item>
+        <item>The fifth one</item>
+
+    </string-array>
+</resources>
+////////////////////////////////////////////////////////////
+package com.example.ipd12.testsclass2;
+
+/**
+ * Created by ipd12 on 8/8/2018.
+ */
+
+class Student {
+    String id;
+    String name;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    String address;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public Student(String id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address=address;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+}

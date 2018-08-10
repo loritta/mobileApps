@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/StudentID"
+        android:title="@string/studentId"
+        android:orderInCategory="1"
+        android:onClick="getStudentID">
+    </item>
+    <item android:id="@+id/StudentAdditionalInfo"
+        android:title="@string/studentInfo"
+        android:orderInCategory="2"
+        android:onClick="getStudentInfo">
+    </item>
+</menu>
