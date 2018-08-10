@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="biggerText">
+        <item name="android:textSize">40sp</item>
+    </style>
+
 </resources>
