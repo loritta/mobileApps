@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JACapp</string>
+    <string name="mapLocation">JAC location on map</string>
+    <string name="webPage">JAC Web Page</string>
+    <string name="infoPage">JAC Info Page</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>

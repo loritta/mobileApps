@@ -1,5 +1,7 @@
 package com.example.a1796122.asynscalls;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,4 +56,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void startSecondActivity(View view){
+        Intent intentForSecond = new Intent(MainActivity.this, Second.class);
+        intentForSecond.putExtra(Intent.EXTRA_TEXT, "Sent from Main Activity");
+        startActivity(intentForSecond);
+    }
+
+    public void startWebpageActivity(View view){
+        Uri uri = Uri.parse("http://johnabbott.qc.ca");
+        Intent openWebpageIntent = new Intent (Intent.ACTION_VIEW, uri);
+        if(openWebpageIntent.resolveActivity((getPackageManager()))!=null){
+            startActivity(openWebpageIntent);
+        }
+    }
 }
