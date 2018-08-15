@@ -6,7 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,20 +36,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void fetchDataFromDB(){
+    public ArrayList<User> fetchDataFromDB(){
         MyDBHelper dbHelper = new MyDBHelper(this, "userdb", null, 1);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[]columns ={"name", "address", "phone"};
         Cursor cursor = db. query("user", columns, null, null, null, null, null);
-        cursor.moveToFirst();
-        Log.i("ValueFromBD", cursor.getString(0));
+        ArrayList<User> users = new ArrayList<User>();
+        if (cursor.moveToFirst()){
+            do{
+                String name = cursor.getString(cursor.getColumnIndex(columns[0]));
+                String address = cursor.getString(cursor.getColumnIndex(columns[1]));
+                String phone = cursor.getString(cursor.getColumnIndex(columns[2]));
+                User user = new User(name, address, phone);
+                users.add(user);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return users;
     }
-    public void saveInfo(){
+    public void saveInfo(View view){
         EditText name = (EditText)findViewById(R.id.name);
         EditText phone = (EditText)findViewById(R.id.phone);
         EditText address = (EditText) findViewById(R.id.address);
         saveValuesToDB(name.getText().toString(), address.getText().toString(), phone.getText().toString());
+    }
+
+    public void showUserData(View view) {
+        ArrayList<User> users = fetchDataFromDB();
     }
 
 }
