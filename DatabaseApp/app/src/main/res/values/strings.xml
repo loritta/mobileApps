@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">DatabaseApp</string>
     <string name="button_send">Save</string>
+    <string name="button_viewAll">View list of records</string>
+    <string name="name">Please type in your name:</string>
+    <string name="phone">Please type in your phone:</string>
+    <string name="address">Please type in your address:</string>
+    <string name="break_line"><br></br></string>
+    <string name="title_activity_show_all">ShowAllActivity</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.a1796122.databaseapp;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
+        new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
+                .build();
     }
 
     public void saveValuesToDB(String name, String address, String phone){
@@ -63,7 +73,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showUserData(View view) {
+
         ArrayList<User> users = fetchDataFromDB();
+        if (users.equals("")) {
+            Log.e("Error", "No data found");
+        }
+        else{
+            Intent intent = new Intent(this, ShowAllActivity.class);
+            // pass the email as it might be needed
+            intent.putExtra("usersInfo", users);
+            startActivity(intent);
+        }
+
     }
 
 }
