@@ -36,7 +36,7 @@ public class ShowAllActivity extends AppCompatActivity {
 
         LayoutInflater inflater = getLayoutInflater();
         Serializable usersToPrint = getIntent().getSerializableExtra("usersInfo");
-        for(int i = 0; i < usersToPrint.; i++) {
+        for(int i = 0; i < 10; i++) {
             TableRow row = (TableRow)inflater.inflate(R.layout.table_row,
                     table, false);
 

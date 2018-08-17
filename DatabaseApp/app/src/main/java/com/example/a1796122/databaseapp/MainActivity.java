@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
+        initRecycleView();
     }
 
     public void saveValuesToDB(String name, String address, String phone){
@@ -85,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+    }
+    public void initRecycleView(){
+        RecyclerView myRcView = findViewById(R.id.rc_view);
+        String [] strings={"foo", "bar", "dean", "con", "gree", "hoo", "koo", "lee", "mii", "nuu", "paa","foo", "bar", "dean",
+             "con", "gree", "hoo", "koo", "lee", "mii", "nuu", "paa","con", "gree", "hoo", "koo", "lee", "mii", "nuu", "paa"};
+        UserAdapter userAdapter = new UserAdapter(strings);
+
+        myRcView.setAdapter(userAdapter);
+        myRcView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
